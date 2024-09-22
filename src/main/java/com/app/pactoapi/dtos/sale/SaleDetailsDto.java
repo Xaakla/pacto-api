@@ -20,6 +20,7 @@ public class SaleDetailsDto {
         this.description = sale.getDescription();
         this.amount = sale.getAmount();
         this.currency = sale.getCurrency();
+        this.status = sale.getPaymentStatus();
     }
 
     public Long getId() {

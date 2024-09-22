@@ -1,5 +1,7 @@
 package com.app.pactoapi.database.entities;
 
+import com.app.pactoapi.enums.PaymentStatus;
+import com.app.pactoapi.enums.SalePaymentStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -97,5 +99,26 @@ public class Sale {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Transient
+    public SalePaymentStatus getPaymentStatus() {
+        if (payments == null || payments.isEmpty())
+            return SalePaymentStatus.PENDING;
+
+        var totalPaid = payments.stream()
+                .filter(it -> it.getStatus() == PaymentStatus.SUCCESS)
+                .mapToLong(Payment::getAmount).sum();
+
+        if (totalPaid == 0)
+            return SalePaymentStatus.PENDING;
+
+        if (totalPaid > amount)
+            return SalePaymentStatus.OVERPAID;
+
+        if (totalPaid < amount)
+            return SalePaymentStatus.PARTIALLY_PAID;
+
+        return SalePaymentStatus.FULLY_PAID;
     }
 }

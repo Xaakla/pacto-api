@@ -19,6 +19,7 @@ public class SaleListDto {
         this.description = description;
         this.amount = amount;
         this.currency = currency;
+        this.paymentStatus = paymentStatus;
     }
 
     public SaleListDto(Sale sale) {
@@ -26,6 +27,7 @@ public class SaleListDto {
         this.description = sale.getDescription();
         this.amount = sale.getAmount();
         this.currency = sale.getCurrency();
+        this.paymentStatus = sale.getPaymentStatus();
     }
 
     public Long getId() {
@@ -58,5 +60,13 @@ public class SaleListDto {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public SalePaymentStatus getStatus() {
+        return paymentStatus;
+    }
+
+    public void setStatus(SalePaymentStatus status) {
+        this.paymentStatus = status;
     }
 }

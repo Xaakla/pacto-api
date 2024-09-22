@@ -1,7 +1,6 @@
 package com.app.pactoapi.paymentprocessing.cielo;
 
 import com.app.pactoapi.enums.PaymentProcessorType;
-import com.app.pactoapi.exceptions.errors.BadRequestException;
 import com.app.pactoapi.paymentprocessing.IPaymentProcessorService;
 import com.app.pactoapi.paymentprocessing.cielo.dtos.CieloCardType;
 import com.app.pactoapi.paymentprocessing.cielo.dtos.request.*;
