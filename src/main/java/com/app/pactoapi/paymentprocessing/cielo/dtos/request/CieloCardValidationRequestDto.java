@@ -1,31 +1,32 @@
-package com.app.pactoapi.paymentprocessing.dtos;
+package com.app.pactoapi.paymentprocessing.cielo.dtos.request;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import com.app.pactoapi.paymentprocessing.cielo.dtos.CieloCardType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CreditCardDto {
+public class CieloCardValidationRequestDto {
 
-    @NotNull
+    @JsonProperty("CardNumber")
     private String cardNumber;
 
-    @NotBlank
+    @JsonProperty("Holder")
     private String holder;
 
-    @NotNull
+    @JsonProperty("ExpirationDate")
     private String expirationDate;
 
-    @NotBlank
+    @JsonProperty("SecurityCode")
     private String securityCode;
 
-    @NotBlank
+    @JsonProperty("Brand")
     private String brand;
 
-    @NotNull
-    private String cardType;
+    @JsonProperty("CardType")
+    private CieloCardType cardType;
 
+    @JsonProperty("SaveCard")
     private boolean saveCard;
 
-    public CreditCardDto(String cardNumber, String holder, String expirationDate, String securityCode, String brand, String cardType) {
+    public CieloCardValidationRequestDto(String cardNumber, String holder, String expirationDate, String securityCode, String brand, CieloCardType cardType) {
         this.cardNumber = cardNumber;
         this.holder = holder;
         this.expirationDate = expirationDate;
@@ -75,11 +76,11 @@ public class CreditCardDto {
         this.brand = brand;
     }
 
-    public String getCardType() {
+    public CieloCardType getCardType() {
         return cardType;
     }
 
-    public void setCardType(String cardType) {
+    public void setCardType(CieloCardType cardType) {
         this.cardType = cardType;
     }
 

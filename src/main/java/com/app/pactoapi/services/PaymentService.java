@@ -7,7 +7,7 @@ import com.app.pactoapi.enums.PaymentStatus;
 import com.app.pactoapi.exceptions.errors.BadRequestException;
 import com.app.pactoapi.exceptions.errors.NotFoundException;
 import com.app.pactoapi.paymentprocessing.PaymentProcessorFactory;
-import com.app.pactoapi.paymentprocessing.dtos.CreditCardDto;
+import com.app.pactoapi.paymentprocessing.models.CreditCardModel;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -29,16 +29,16 @@ public class PaymentService {
     }
 
     @Transactional
-    public Payment payWithCreditCard(Long saleId, CreditCardDto creditCardDto, Long amount) {
+    public Payment payWithCreditCard(Long saleId, CreditCardModel creditCardModel, Long amount) {
         final var sale = saleService.findById(saleId);
         assertPaymentAmountIsLessThanTotalRemainingAmount(sale, amount);
 
         final var paymentProcessor = paymentProcessorFactory.getByCurrency(sale.getCurrency());
-        final var validationResult = paymentProcessor.validateCard(creditCardDto);
+        final var validationResult = paymentProcessor.validateCard(creditCardModel);
         if (!validationResult.isValid())
             throw new BadRequestException("Credit card validation failed");
 
-        final var paymentResult = paymentProcessor.payWithCreditCard(creditCardDto, sale.getId().toString(), amount);
+        final var paymentResult = paymentProcessor.payWithCreditCard(creditCardModel, sale.getId().toString(), amount);
 
         return paymentRepository.save(new Payment(null, paymentResult.getTransactionId(), paymentProcessor.getType(), paymentResult.getPaymentStatus(), sale, amount));
     }

@@ -1,4 +1,4 @@
-package com.app.pactoapi.routes;
+package com.app.pactoapi;
 
 import org.springframework.http.HttpMethod;
 
@@ -25,6 +25,10 @@ public class Routes {
 
             public static final class Login {
                 public static final String path = Auth.root + "/signin";
+            }
+
+            public static final class Logout {
+                public static final String path = Auth.root + "/logout";
             }
         }
     }

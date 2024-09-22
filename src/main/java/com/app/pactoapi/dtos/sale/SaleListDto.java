@@ -1,20 +1,28 @@
 package com.app.pactoapi.dtos.sale;
 
 import com.app.pactoapi.database.entities.Sale;
-import com.app.pactoapi.dtos.payment.PaymentResponseDto;
+import com.app.pactoapi.enums.SalePaymentStatus;
 
-import java.util.List;
-
-public class SaleDetailsResponseDto {
+public class SaleListDto {
 
     private Long id;
     private String description;
     private Long amount;
     private String currency;
-    private List<PaymentResponseDto> payments;
+    private SalePaymentStatus paymentStatus;
 
-    public SaleDetailsResponseDto(Sale sale) {
-        this.id= sale.getId();
+    public SaleListDto() {
+    }
+
+    public SaleListDto(Long id, String description, Long amount, String currency, SalePaymentStatus paymentStatus) {
+        this.id = id;
+        this.description = description;
+        this.amount = amount;
+        this.currency = currency;
+    }
+
+    public SaleListDto(Sale sale) {
+        this.id = sale.getId();
         this.description = sale.getDescription();
         this.amount = sale.getAmount();
         this.currency = sale.getCurrency();
@@ -50,13 +58,5 @@ public class SaleDetailsResponseDto {
 
     public void setCurrency(String currency) {
         this.currency = currency;
-    }
-
-    public List<PaymentResponseDto> getPayments() {
-        return payments;
-    }
-
-    public void setPayments(List<PaymentResponseDto> payments) {
-        this.payments = payments;
     }
 }

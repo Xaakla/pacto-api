@@ -2,6 +2,7 @@ package com.app.pactoapi.exceptions;
 
 import com.app.pactoapi.exceptions.errors.BadRequestException;
 import com.app.pactoapi.exceptions.errors.NotFoundException;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

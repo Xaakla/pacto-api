@@ -1,10 +1,10 @@
-package com.app.pactoapi.paymentprocessing.dtos;
+package com.app.pactoapi.paymentprocessing.models;
 
-public class PaymentCancelationResponseDto {
+public class PaymentCancelationResponseModel {
 
     private boolean successful;
 
-    public PaymentCancelationResponseDto(boolean successful) {
+    public PaymentCancelationResponseModel(boolean successful) {
         this.successful = successful;
     }
 

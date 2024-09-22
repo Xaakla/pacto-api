@@ -6,7 +6,7 @@ import com.app.pactoapi.dtos.sale.NewEditSaleDto;
 import com.app.pactoapi.enums.PaymentStatus;
 import com.app.pactoapi.exceptions.errors.BadRequestException;
 import com.app.pactoapi.exceptions.errors.NotFoundException;
-import com.app.pactoapi.utilities.Utils;
+import com.app.pactoapi.commons.Utils;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,7 +26,9 @@ public class SaleService {
     }
 
     public Page<Sale> findAll(String q, String transactionId, int page, int itemsPerPage, Sort.Direction sortDirection) {
-        return saleRepository.findAll(q, transactionId, Utils.loggedUser().getId(), PageRequest.of(page, itemsPerPage, Sort.by(sortDirection, "id")));
+        return saleRepository.findAll(q, transactionId, Utils.loggedUser().getId(),
+                PageRequest.of(page, itemsPerPage, Sort.by(sortDirection, "id"))
+        );
     }
 
     public Sale findById(Long id) {

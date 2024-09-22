@@ -13,12 +13,12 @@ import org.springframework.stereotype.Repository;
 public interface SaleRepository extends PagingAndSortingRepository<Sale, Long>, JpaRepository<Sale, Long> {
 
     @Query("""
-           SELECT s FROM Sale s
-           LEFT JOIN s.payments p
-           WHERE (trim(lower(FUNCTION('unaccent', s.description))) LIKE trim(lower(FUNCTION('unaccent', CONCAT('%', :q, '%'))))
-           OR :q IS NULL OR :q = '')
-           AND (p.transactionId LIKE CONCAT('%', :transactionId, '%') OR :transactionId IS NULL OR :transactionId = '')
-           AND (s.user.id = :userId)
-           """)
+       SELECT DISTINCT s FROM Sale s LEFT JOIN s.payments p
+       WHERE s.user.id = :userId AND (
+           trim(lower(FUNCTION('unaccent', s.description))) LIKE trim(lower(FUNCTION('unaccent', CONCAT('%', :q, '%'))))
+           OR :#{#q == null} = TRUE OR :q = ''
+       )
+       AND (p.transactionId LIKE CONCAT('%', :transactionId, '%') OR :#{#transactionId == null} = TRUE OR :transactionId = '')
+       """)
     Page<Sale> findAll(@Param("q") String q, @Param("transactionId") String transactionId,  @Param("userId") Long userId, Pageable pageable);
 }

@@ -4,7 +4,7 @@ import com.app.pactoapi.database.entities.User;
 import com.app.pactoapi.dtos.auth.LoginDto;
 import com.app.pactoapi.dtos.auth.RegisterDto;
 import com.app.pactoapi.exceptions.errors.BadRequestException;
-import com.app.pactoapi.utilities.Utils;
+import com.app.pactoapi.commons.Utils;
 import jakarta.transaction.Transactional;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

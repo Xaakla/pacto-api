@@ -1,11 +1,11 @@
 package com.app.pactoapi.dtos.payment;
 
-import com.app.pactoapi.paymentprocessing.dtos.CreditCardDto;
+import com.app.pactoapi.paymentprocessing.models.CreditCardModel;
 import jakarta.validation.constraints.NotNull;
 
 public class NewPaymentDto {
     @NotNull
-    private CreditCardDto creditCard;
+    private CreditCardModel creditCard;
 
     @NotNull
     private Long saleId;
@@ -16,11 +16,11 @@ public class NewPaymentDto {
     public NewPaymentDto() {
     }
 
-    public CreditCardDto getCreditCard() {
+    public CreditCardModel getCreditCard() {
         return creditCard;
     }
 
-    public void setCreditCard(CreditCardDto creditCard) {
+    public void setCreditCard(CreditCardModel creditCard) {
         this.creditCard = creditCard;
     }
 

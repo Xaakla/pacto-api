@@ -1,10 +1,10 @@
-package com.app.pactoapi.paymentprocessing.dtos;
+package com.app.pactoapi.paymentprocessing.models;
 
-public class CardValidationResponseDto {
+public class CardValidationResponseModel {
 
     private boolean valid;
 
-    public CardValidationResponseDto(boolean valid) {
+    public CardValidationResponseModel(boolean valid) {
         this.valid = valid;
     }
 

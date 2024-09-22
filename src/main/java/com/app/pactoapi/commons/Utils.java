@@ -1,4 +1,4 @@
-package com.app.pactoapi.utilities;
+package com.app.pactoapi.commons;
 
 import com.app.pactoapi.configs.security.DbUserDetails;
 import com.app.pactoapi.database.entities.User;

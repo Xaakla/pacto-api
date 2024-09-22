@@ -1,15 +1,15 @@
-package com.app.pactoapi.paymentprocessing.dtos;
+package com.app.pactoapi.paymentprocessing.models;
 
 import com.app.pactoapi.enums.PaymentStatus;
 
-public class CreditCardPaymentResponseDto {
+public class CreditCardPaymentResponseModel {
 
     private String cardToken;
     private PaymentStatus paymentStatus;
     private String transactionId;
     private long amount;
 
-    public CreditCardPaymentResponseDto(String cardToken, PaymentStatus paymentStatus, String transactionId, long amount) {
+    public CreditCardPaymentResponseModel(String cardToken, PaymentStatus paymentStatus, String transactionId, long amount) {
         this.cardToken = cardToken;
         this.paymentStatus = paymentStatus;
         this.transactionId = transactionId;
