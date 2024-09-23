@@ -52,6 +52,43 @@ Com o banco de dados configurado, navegue até o diretório do projeto clonado e
 
 A aplicação estará disponível localmente na porta 8080.
 
+## Simulação de Pagamentos com Cartão de Crédito
+
+Para realizar a simulação de transações com cartão de crédito utilizando a API da **Cielo**, é importante seguir algumas regras específicas para garantir a validação do cartão e o comportamento correto da simulação.
+
+### Regras de Simulação de Cartão
+
+1. **Número do Cartão**:
+   - O número do cartão deve começar com o dígito **1**.  
+     Exemplo: `1XXX XXXX XXXX XXXX`.
+
+
+2. **Status da Transação**:  
+   O status do pagamento será determinado pelo último dígito do número do cartão de crédito:
+   - **Aprovado**: O último dígito deve ser **1** ou **4**.  
+     Exemplo: `1XXX XXXX XXXX XXX4`.
+   - **Falha**: O último dígito deve ser **2**, **3**, **5**, **7**, ou **8**.  
+     Exemplo: `1XXX XXXX XXXX XXX3`.
+   - **Pendente**: O último dígito deve ser **6**.  
+     Exemplo: `1XXX XXXX XXXX XXX6`.
+   - **Aleatório**: O último dígito deve ser **9**.  
+     Exemplo: `1XXX XXXX XXXX XXX9`.
+
+
+3. **Nome do Titular**:
+   - O nome no cartão deve conter, no máximo, **25 caracteres**.
+
+
+4. **Data de Vencimento**:
+   - A data de vencimento deve ser válida.  
+     Exemplo: `12/2030`.
+
+
+5. **Código de Segurança (CVV)**:
+   - O CVV deve ser um número aleatório de **3 dígitos**.  
+     Exemplo: `222`.
+
+
 ## Observações
 
 - A integração com a API da CIELO exige chaves e credenciais específicas, que devem ser configuradas de acordo com a documentação fornecida pela CIELO.
