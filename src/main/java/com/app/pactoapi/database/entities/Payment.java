@@ -43,12 +43,12 @@ public class Payment {
     }
 
     public Payment(
-        String cardToken,
-        String transactionId,
-        PaymentProcessorType paymentProcessor,
-        PaymentStatus status,
-        Sale sale,
-        Long amount
+            String cardToken,
+            String transactionId,
+            PaymentProcessorType paymentProcessor,
+            PaymentStatus status,
+            Sale sale,
+            Long amount
     ) {
         this.cardToken = cardToken;
         this.transactionId = transactionId;

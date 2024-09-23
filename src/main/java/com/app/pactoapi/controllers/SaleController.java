@@ -53,9 +53,9 @@ public class SaleController {
             @RequestParam(required = false, defaultValue = "ASC") Sort.Direction sortDirection
     ) {
         return ResponseResult.success(
-            modelMapperService.toPage(SaleListDto.class,
-                saleService.findAll(q, transactionId, page, itemsPerPage, sortDirection)
-            )
+                modelMapperService.toPage(SaleListDto.class,
+                        saleService.findAll(q, transactionId, page, itemsPerPage, sortDirection)
+                )
         );
     }
 

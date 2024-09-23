@@ -60,7 +60,7 @@ public class SaleService {
 
     @Transactional
     public void deleteAll(List<Long> ids) {
-      ids.forEach(this::delete);
+        ids.forEach(this::delete);
     }
 
     private boolean hasSuccessfulPayment(Sale sale) {

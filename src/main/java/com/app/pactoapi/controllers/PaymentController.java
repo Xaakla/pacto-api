@@ -8,7 +8,6 @@ import com.app.pactoapi.services.PaymentService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
 public class PaymentController {
     private final PaymentService paymentService;
 
@@ -18,13 +17,11 @@ public class PaymentController {
 
     @PostMapping(Routes.Admin.Payment.path)
     public ResponseResult<PaymentResponseDto> createPayment(@RequestBody NewPaymentDto paymentDto) {
-        var response = new PaymentResponseDto(paymentService.payWithCreditCard(paymentDto.getSaleId(), paymentDto.getCreditCard(), paymentDto.getAmount()));
-        return ResponseResult.success(response);
+        return ResponseResult.success(new PaymentResponseDto(paymentService.payWithCreditCard(paymentDto.getSaleId(), paymentDto.getCreditCard(), paymentDto.getAmount())));
     }
 
     @PutMapping(Routes.Admin.Payment.ById.path)
     public ResponseResult<PaymentResponseDto> cancelPayment(@PathVariable Long id) {
-        var response = new PaymentResponseDto(paymentService.cancelPayment(id));
-        return ResponseResult.success(response);
+        return ResponseResult.success(new PaymentResponseDto(paymentService.cancelPayment(id)));
     }
 }

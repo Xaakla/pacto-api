@@ -32,11 +32,11 @@ public class AuthenticationService {
     @Transactional
     public User registerUser(RegisterDto registerDto) {
 
-        if (!Objects.equals(registerDto.password(), registerDto.confirmPassword())){
+        if (!Objects.equals(registerDto.password(), registerDto.confirmPassword())) {
             throw new BadRequestException("the passwords are different");
         }
 
-        if (userService.existsByEmail(registerDto.email())){
+        if (userService.existsByEmail(registerDto.email())) {
             throw new BadRequestException("the email is already in use");
         }
 
@@ -46,7 +46,7 @@ public class AuthenticationService {
     public User loginUser(LoginDto loginDto) {
 
         var user = userService.findByEmail(loginDto.email())
-                .orElseThrow(()-> new BadRequestException("Incorrect email or password"));
+                .orElseThrow(() -> new BadRequestException("Incorrect email or password"));
 
         if (!new BCryptPasswordEncoder().matches(loginDto.password(), user.getPassword()))
             throw new BadRequestException("Invalid email or password!");
@@ -62,6 +62,4 @@ public class AuthenticationService {
 
         return Utils.loggedUser();
     }
-
-
 }
